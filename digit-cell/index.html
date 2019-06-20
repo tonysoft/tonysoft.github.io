@@ -7,13 +7,40 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
 <head>
   <title>digit-cell demo</title>
   <script type="module">
+    import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
+    import 'https://unpkg.com/tonysoft@latest/generic-container.js'
     import 'https://unpkg.com/digit-cell@latest/digit-cell.js'
   </script>
+  <style>
+      generic-container {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+  </style>
 </head>
-<body>
+<body style="overflow: hidden;">
   <script>
+    window.addEventListener("resize", windowResize);
+
+    function windowResize(e) {
+      var genericContainers = document.querySelectorAll("*[best-fit]");
+      genericContainers.forEach(function(genericContainer) {
+        if (genericContainer.bestFit) {
+          var width = window.innerWidth;
+          var height = window.innerHeight;
+          genericContainer.scaleContent(width, height);
+        }
+      })
+    }
+
     var value = 0;
+    var initial = true;
     setInterval(function() {
+      if (initial) {
+        windowResize();
+        initial = false;
+      }
       if (value === 9) {
         value = -1;
       }
@@ -23,9 +50,9 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
     }, 1000)
   </script>
 
-  <div>
-    <digit-cell value="0" size="200"></digit-cell>
-  </div>
+  <generic-container best-fit class="absoluteZero">
+    <digit-cell slot="content" value="0" size="200" stylex="width: 400px; height: 400px;"></digit-cell>
+  </generic-container>
 
 </body>
 </html>
