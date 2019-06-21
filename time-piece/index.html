@@ -5,11 +5,11 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
 -->
 <html>
 <head>
-  <title>digital-time-piece demo</title>
+  <title>time-piece demo</title>
   <script type="module">
     import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
     import 'https://unpkg.com/tonysoft@^1.2.6/generic-container.js'
-    import 'https://unpkg.com/tonysoft@^1.2.6/digital-time-piece.js'
+    import 'https://unpkg.com/tonysoft@^1.2.6/time-piece.js'
   </script>
   <style>
   </style>
@@ -29,15 +29,19 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
       })
     }
 
-    setTimeout(function() {
-      var digitalClock = document.querySelector("digital-time-piece");
-      digitalClock.start();
-      windowResize();
-    }, 1000)
+    var startInterval = setInterval(function() {
+      var timerComponent = document.querySelector("#timerComponent");
+      if (timerComponent && timerComponent.pause) {
+        timerComponent.clockMode = true;
+        timerComponent.start();
+        windowResize();
+        clearInterval(startInterval);
+      }
+    }, 100);
   </script>
 
   <generic-container best-fit>
-    <digital-time-piece slot="content" size="75"></digital-time-piece>
+    <time-piece id="timerComponent" slot="content" standard-size="750" size="550">
   </generic-container>
 
 </body>
