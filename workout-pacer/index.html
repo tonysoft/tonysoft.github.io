@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>workout-pacer demo</title>
+
+    <script type="module">
+      import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
+      import 'https://unpkg.com/tonysoft@^1.2.6/@polymer/iron-icon/iron-icon.js';
+      import 'https://unpkg.com/tonysoft@^1.2.6/@polymer/iron-icons/iron-icons.js'
+      import "https://unpkg.com/tonysoft@^1.2.6/my-icons.js"
+    </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/tonysoft@^1.2.6//workoutTimer.css">
+
+
+    <script type="module" src="https://unpkg.com/tonysoft@^1.2.6/workout-reps.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.2.9/digital-time-piece.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.2.9/time-piece.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.2.6/generic-container.js"></script>
+    <script src="https://unpkg.com/tonysoft@^1.2.6//panzoom.min.js"></script>
+    <script src="https://unpkg.com/tonysoft@^1.2.6//workoutTimerLogic.js"></script>
+    <script>
+      var repetitionCount = 0;
+
+      function load() {
+        loadHelper();
+      }
+
+      setTimeout(function() {
+        load();
+      }, 1000)
+
+      var second = 0;
+      setTimeout(function() {
+        var digitalClock = document.querySelector("digital-time-piece");
+        digitalClock.start();
+      }, 2000)
+
+    </script>
+
+
+    <style>
+      .zoomPanBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+      }
+      .testBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+    </style>
+
+    <custom-style>
+      <style is="custom-style">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="bumpReps(event, 1)" class="fullScreen"></div>
+    <div class="testBox">
+      <digital-time-piece size="75"></digital-time-piece>
+    </div>
+    <generic-container best-fit class="absoluteZero">
+      <div slot="header" class="relatively noSelect fullWidth centered">
+          <br/>
+          <div>
+            Workout Timer
+          </div>
+      </div>
+      <div slot="content" class="relatively noSelect">
+          <br/>
+          <div class="fullWidth centered">
+            <!-- <workout-reps id="workoutReps" repetition-count="0" repetition-target="105" style="width: 600px; height: 75px;"></workout-reps> -->
+            <time-piece id="timerComponent" standard-size="750" size="550" repetition-count="0">
+              <span slot="optionalDisplay">
+                <workout-reps id="workoutReps" repetition-count="0" repetition-target="105" scale="1.0"></workout-reps>
+              </span>
+              <span slot="digitalDisplay">
+                <digital-time-piece size="25"></digital-time-piece>
+              </span>
+            </time-piece>
+          </div>
+          <div id="menu" class="fullWidth flex-menu">
+            <div style="display: none; margin:20px; cursor: pointer;" oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="changeSize(event)">Size+-</div>
+            <div style="margin:20px; cursor: pointer;" onclick="clockMode(event, true)" title="Clock Mode"><iron-icon icon="my:clock"></div>
+            <div style="margin:20px; cursor: pointer;" onclick="clockMode(event, false)" title="Stop Watch Mode"><iron-icon icon="my:stopwatch"></div>
+            <div style="margin:20px; cursor: pointer;" onclick="start(event)" title="Start"><iron-icon icon="my:play"></iron-icon></div>
+            <div style="margin:20px; cursor: pointer;" onclick="pause(event)" title="Pause"><iron-icon icon="my:pause"></iron-icon></div>
+            <div style="margin:20px; cursor: pointer;" onclick="reset(event)" title="Reset"><iron-icon icon="cached"></iron-icon></div>
+            <div style="margin:20px;"">
+              <span style="cursor: default; onclick="eat(event)" title="Target Reps"><iron-icon icon="my:target"></span>
+              <input id="targetReps" style="width: 50px; text-align: center; border: 2px solid black;" onchange="setTargetReps(event)" onclick="eat(event)" title="Target Reps"></input>
+            </div>
+            <div style="margin:20px;">
+              <span style="cursor: pointer;" oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="bumpReps(event, 1)" title="Add Rep"><iron-icon icon="my:plus"></span>
+              <span style="cursor: pointer; position: relative; top: 2px;" oncontextmenu="cancelDefault(event)" onmousedown="eat(event)" onclick="eat(event)" onmouseup="bumpReps(event, 5)" title="Add 5 Reps">5</span>
+              <span style="cursor: pointer;" oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="bumpReps(event, -1)" title="Subtract Rep"><iron-icon icon="my:minus"></span>
+            </div>
+          </div>
+      </div>
+      <div slot="footer" class="relatively noSelect fullWidth centered">
+          <div id="workoutStatus"> </div>
+          <br/><br/>
+      </div>
+    </generic-container>
+  </body>
+</html>
+ 

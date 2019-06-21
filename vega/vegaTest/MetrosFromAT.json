@@ -1,0 +1,185 @@
+[{
+    "entity": "metroRoutingNode",
+    "id": "AT",
+    "name": "AT"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "DC",
+    "name": "DC",
+    "metric": 852,
+    "parent": "AT"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "DA",
+    "name": "DA",
+    "metric": 1161,
+    "parent": "AT"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "NY",
+    "name": "NY",
+    "metric": 1201,
+    "parent": "DC"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "TR",
+    "name": "TR",
+    "metric": 1391,
+    "parent": "DC"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "BO",
+    "name": "BO",
+    "metric": 1510,
+    "parent": "NY"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "CH",
+    "name": "CH",
+    "metric": 1768,
+    "parent": "DC"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "LA",
+    "name": "LA",
+    "metric": 3153,
+    "parent": "DA"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "DE",
+    "name": "DE",
+    "metric": 3248,
+    "parent": "CH"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "MI",
+    "name": "MI",
+    "metric": 3259,
+    "parent": "DC"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "SV",
+    "name": "SV",
+    "metric": 3482,
+    "parent": "DA"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "SE",
+    "name": "SE",
+    "metric": 4562,
+    "parent": "CH"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "DB",
+    "name": "DB",
+    "metric": 6308,
+    "parent": "NY"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "LD",
+    "name": "LD",
+    "metric": 6778,
+    "parent": "DB"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "PA",
+    "name": "PA",
+    "metric": 7034,
+    "parent": "DC"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "AM",
+    "name": "AM",
+    "metric": 7065,
+    "parent": "DB"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "FR",
+    "name": "FR",
+    "metric": 7414,
+    "parent": "LD"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "ZH",
+    "name": "ZH",
+    "metric": 7523,
+    "parent": "PA"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "ML",
+    "name": "ML",
+    "metric": 7673,
+    "parent": "PA"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "SK",
+    "name": "SK",
+    "metric": 8196,
+    "parent": "AM"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "WA",
+    "name": "WA",
+    "metric": 8255,
+    "parent": "AM"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "HE",
+    "name": "HE",
+    "metric": 8566,
+    "parent": "AM"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "MD",
+    "name": "MD",
+    "metric": 8693,
+    "parent": "PA"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "SP",
+    "name": "SP",
+    "metric": 8881,
+    "parent": "NY"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "OS",
+    "name": "OS",
+    "metric": 12205,
+    "parent": "SV"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "TY",
+    "name": "TY",
+    "metric": 12610,
+    "parent": "OS"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "HK",
+    "name": "HK",
+    "metric": 14696,
+    "parent": "OS"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "SY",
+    "name": "SY",
+    "metric": 15229,
+    "parent": "LA"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "ME",
+    "name": "ME",
+    "metric": 15933,
+    "parent": "SY"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "SG",
+    "name": "SG",
+    "metric": 17294,
+    "parent": "HK"
+}, {
+    "entity": "metroRoutingNode",
+    "id": "PE",
+    "name": "PE",
+    "metric": 18519,
+    "parent": "SY"
+}]

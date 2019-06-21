@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "One"
+  },
+  {
+    "id": 2,
+    "name": "Two",
+    "parent": 1
+  },
+  {
+    "id": 3,
+    "name": "Three",
+    "parent": 1
+  },
+  {
+    "id": 4,
+    "name": "Four",
+    "parent": 2
+  },
+  {
+    "id": 5,
+    "name": "Five",
+    "parent": 2
+  },
+  {
+    "id": 6,
+    "name": "Six",
+    "parent": 2
+  },
+  {
+    "id": 7,
+    "name": "Seven",
+    "parent": 3
+  },
+  {
+    "id": 8,
+    "name": "Eight",
+    "parent": 3
+  },
+  {
+    "id": 9,
+    "name": "Nine",
+    "parent": 3
+  }
+]
