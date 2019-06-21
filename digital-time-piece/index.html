@@ -8,8 +8,8 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
   <title>digit-cell demo</title>
   <script type="module">
     import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
-    import 'https://unpkg.com/tonysoft@1.1.0/generic-container.js'
-    import 'https://unpkg.com/digit-cell@latest/digit-cell.js'
+    import 'https://unpkg.com/tonysoft@^1.2.6/generic-container.js'
+    import 'https://unpkg.com/tonysoft@^1.2.6/digital-time-piece.js'
   </script>
   <style>
   </style>
@@ -29,24 +29,15 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
       })
     }
 
-    var value = 0;
-    var initial = true;
-    setInterval(function() {
-      if (initial) {
-        windowResize();
-        initial = false;
-      }
-      if (value === 9) {
-        value = -1;
-      }
-      value++;
-      var digitCell = document.querySelector("digit-cell");
-      digitCell.value = value;
+    setTimeout(function() {
+      var digitalClock = document.querySelector("digital-time-piece");
+      digitalClock.start();
+      windowResize();
     }, 1000)
   </script>
 
   <generic-container best-fit>
-    <digit-cell slot="content" value="0" size="200"></digit-cell>
+    <digital-time-piece slot="content" size="75"></digital-time-piece>
   </generic-container>
 
 </body>
