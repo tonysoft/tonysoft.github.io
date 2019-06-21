@@ -71,9 +71,9 @@
         var fullScreen = document.querySelector(".demoWrapper");
         fullScreen.style.opacity = 1.0;
         var element = document.querySelector('#panZoomContainer');
-        panzoom(element, {
-          zoomDoubleClickSpeed: 1, 
-        });
+        // panzoom(element, {
+        //   zoomDoubleClickSpeed: 1, 
+        // });
         fetch("./vegaTest/bar-chart.data.json")
           .then(res => res.json())
           .then(data => {
