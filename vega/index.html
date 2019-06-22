@@ -171,8 +171,10 @@
         var category = detail.category;
         switch (category) {
           case "MetroMap":
-            var metroMapHeader = document.querySelector("#MetroMapHeader");
-            metroMapHeader.innerText = "Metro Map";
+            var metroMapHeader = document.querySelectorAll(".MetroMapHeader");
+            metroMapHeader.forEach(function(header) {
+              header.innerText = "Metro Map";
+            })
             break;
           default:
             break;
@@ -216,8 +218,10 @@
             var metroMap = view.data("tree");
             var metro = item.datum.id;
             var pathToOrigin = buildMetroPathToOrigin(metro, metroMap);
-            var metroMapHeader = document.querySelector("#MetroMapHeader");
-            metroMapHeader.innerText = pathToOrigin;
+            var metroMapHeader = document.querySelectorAll(".MetroMapHeader");
+            metroMapHeader.forEach(function(header) {
+              header.innerText = pathToOrigin;
+            })
             break;
         }
       }
@@ -298,7 +302,7 @@
     <div id="panZoomContainer" oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="eat(event)" class="fullScreen demoWrapper" style="opacity: 0.0;">
       <div class="topLeft">
         <vega-container id="MetroMap" category="MetroMap" best-fit class="vegaView treeDemo">
-          <h1 id="MetroMapHeader" slot="header" class="centered bigText">Metro Map</h1>
+          <h1 slot="header" class="MetroMapHeader centered bigText">Metro Map</h1>
           <div slot="content"></div>
           <h1 slot="footer" class="centered">How a Network Routes to various Worldwide Locations...</h1>
         </vega-container>
@@ -321,7 +325,7 @@
       </div>
       <div class="bottomLeft">
         <vega-container id="MetroMapSunburst" category="MetroMap" best-fit class="vegaView sunburstDemo">
-          <h1 slot="header" class="centered">Sunburst Chart</h1>
+          <h1 slot="header" class="MetroMapHeader centered">Sunburst Chart</h1>
           <div slot="content"></div>
           <h2 slot="footer" class="centered">Another way of representing Tree Data...</h2>
         </vega-container>
