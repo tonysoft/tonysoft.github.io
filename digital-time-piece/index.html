@@ -29,11 +29,14 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
       })
     }
 
-    setTimeout(function() {
+    var startupInterval = setInterval(function() {
       var digitalClock = document.querySelector("digital-time-piece");
-      digitalClock.start();
-      windowResize();
-    }, 1000)
+      if (digitalClock.start) {
+        digitalClock.start();
+        windowResize();
+        clearInterval(startupInterval);
+      }
+    }, 100)
   </script>
 
   <generic-container best-fit>
