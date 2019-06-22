@@ -9,7 +9,7 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
   <script type="module">
     import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
     import 'https://unpkg.com/tonysoft@^1.3.4/generic-container.js'
-    import 'https://unpkg.com/tonysoft@^1.3.4/digit-cell.js'
+    import 'https://unpkg.com/tonysoft@^1.3.4/workout-reps.js'
   </script>
   <style>
   </style>
@@ -29,25 +29,22 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
       })
     }
 
-    var value = 0;
-    var initial = true;
-    setInterval(function() {
-      if (initial) {
-        windowResize();
-        initial = false;
+    var startInterval = setInterval(function() {
+      var workoutReps = document.querySelector("workout-reps");
+      if (workoutReps) {
+       windowResize();
+       clearInterval(startInterval);
       }
-      if (value === 9) {
-        value = -1;
-      }
-      value++;
-      var digitCell = document.querySelector("digit-cell");
-      digitCell.value = value;
     }, 1000)
   </script>
 
-  <generic-container best-fit>
-    <digit-cell slot="content" value="0" size="200"></digit-cell>
-  </generic-container>
+  <div style="position: absolute; top: 5%; left: 5%; width: 90%; height: 90%;">
+    <generic-container best-fit>
+      <div slot="content" style="width: 400px; height: 50px;">
+          <workout-reps slot="content" repetition-count="0" repetition-target="105"></workout-reps>
+      </div>
+    </generic-container>
+  </div>
 
 </body>
 </html>
