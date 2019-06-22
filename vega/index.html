@@ -66,6 +66,7 @@
 
       }
 
+      var AllMetroMaps = null;
       function demoSetup() {
         var vegaContainer = document.querySelector(".barChartDemo");
         windowResize();
@@ -82,10 +83,10 @@
           .then(data => {
             setupBarChartDataUpdate(data, vegaContainer);
           })
-        fetch("./apiRequests/metroRouting.json")
+        fetch("./vegaTest/AllMetroMaps.json")
           .then(res => res.json())
           .then(data => {
-            metroRoutingRequestTemplate = data;
+            AllMetroMaps = data;
           })
 
         vegaContainers.forEach(function(container) {
@@ -178,6 +179,8 @@
         }
       }
 
+      var currentMetro = "AT";
+      var selectedMetro = "";
       function metroMapClick(e) {
         var detail = e.detail;
         var item = detail.item;
@@ -188,7 +191,13 @@
             if (event.ctrlKey) {
               showItem(item, event);
             } else {
-              metroRoutingUpdate(item.datum.id);
+              var metro = item.datum.id;
+              if (metro !== selectedMetro) {
+                metroMapHoverNode(e);
+                selectedMetro = metro;
+              } else {
+                metroRoutingUpdate(metro);
+              }
             }
             break;
           default:
@@ -246,10 +255,8 @@
         if (!metro) {
           return;
         }
-        var metroRoutingRequest = JSON.stringify(metroRoutingRequestTemplate);
-        metroRoutingRequest = metroRoutingRequest.replace("${metro}", metro);
-        metroRoutingRequest = JSON.parse(metroRoutingRequest);
-        apiRequest("http://localhost:8090", "executeWorkflow", metroRoutingRequest, function(metroRouting) {
+        if (AllMetroMaps) {
+          var metroRouting = AllMetroMaps[metro];
           var treeContainer = document.querySelector(".treeDemo");
           var sunburstContainer = document.querySelector(".sunburstDemo");
           treeContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
@@ -258,18 +265,9 @@
           sunburstContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
             // Any postprocessing after an update
           });
-        });
-      }
-
-      function clickMetro(e) {
-        var metro = e.srcElement.textContent;
-        if (metro) {
-          metroRoutingUpdate(metro);
+          currentMetro = metro;
+          selectedMetro = "";
         }
-      }
-
-      function clickTest(e) {
-        console.log(e.srcElement);
       }
 
     </script>
