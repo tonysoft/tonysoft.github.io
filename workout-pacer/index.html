@@ -38,10 +38,6 @@
         var digitalClock = document.querySelector("digital-time-piece");
         if (digitalClock.start) {
           digitalClock.start();
-          var wrappingList = document.querySelector("wrapping-list");
-          wrappingList.addEventListener('interaction', function(e) {
-            console.log(e.detail.id + ":" + e.detail.interaction);
-          });
           clearInterval(startInterval);
         }
       }, 1000)
@@ -87,7 +83,7 @@
   <body>
     <div oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="bumpReps(event, 1)" class="fullScreen"></div>
     <div class="testBox">
-      <digital-time-piece size="75"></digital-time-piece>
+      <digital-time-piece size="40"></digital-time-piece>
     </div>
     <generic-container best-fit class="absoluteZero">
       <div slot="header" class="relatively noSelect fullWidth centered">
