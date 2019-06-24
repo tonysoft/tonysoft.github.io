@@ -1,0 +1,104 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2019 Tony Sukiennik. All rights reserved.
+-->
+<html>
+<head>
+  <title>wrapping-list demo</title>
+  <script type="module">
+    import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
+    import 'https://unpkg.com/tonysoft@^1.3.4/generic-container.js'
+    import 'https://unpkg.com/tonysoft@^1.3.6//wrapping-list.js'
+  </script>
+  <style>
+      .wrappingListItem {
+        width: 30px; 
+        height: 20px; 
+        line-height: 20px; 
+        margin: 0 5px 5px 5px;
+        font-size: 10px; 
+        border: 1px solid black; 
+        background-color: #dddddd; 
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;;
+      }
+      .rootWrappingListItem {
+        background-color: #ffdddd; 
+      }
+      .flex-menu-left { 
+        display: flex; 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .fullScreen {
+        position: absolute;
+        top: 1%;
+        left: 1%;
+        width: 98%;
+        height: 98%;
+      }
+  </style>
+</head>
+<body style="overflow: hidden;">
+  <script>
+    window.addEventListener("resize", windowResize);
+
+    function windowResize(e) {
+      var genericContainers = document.querySelectorAll("*[best-fit]");
+      genericContainers.forEach(function(genericContainer) {
+        if (genericContainer.bestFit) {
+          var width = window.innerWidth;
+          var height = window.innerHeight;
+          genericContainer.scaleContent(width, height);
+        }
+      })
+    }
+
+    var AllMetroMaps = null;
+    var startInterval = setInterval(function() {
+      var wrappingList = document.querySelector("wrapping-list");
+      if (wrappingList.setEvents) {
+        windowResize();
+        clearInterval(startInterval);
+        fetch("../vega/vegaTest/AllMetroMaps.json")
+          .then(res => res.json())
+          .then(data => {
+            AllMetroMaps = data;
+          })
+          wrappingList.addEventListener('interaction', function(e) {
+            if (e.detail.interaction === "click") {
+              metroRoutingUpdate(e.detail.id);
+            } else {
+              console.log(e.detail.id + ":" + e.detail.interaction);
+            }
+          });
+      }
+    }, 100)
+
+    function metroRoutingUpdate(metro) {
+      if (!metro) {
+        return;
+      }
+      if (AllMetroMaps) {
+        var metroRouting = AllMetroMaps[metro];
+        var wrappingList = document.querySelector("wrapping-list");
+        wrappingList.data = metroRouting;
+      }
+    }
+  </script>
+
+  <generic-container best-fit class="fullScreen">
+      <wrapping-list slot="content" data-url="../vega/vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name">
+        <div slot="list" class="flex-menu-left">
+          <div item="${id}" class="wrappingListItem">${name}</div>
+        </div>
+      </wrapping-list>
+  </generic-container>
+
+</body>
+</html>
+ 
