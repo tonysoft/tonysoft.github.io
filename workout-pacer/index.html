@@ -39,10 +39,22 @@
         var digitalClock = document.querySelector("digital-time-piece");
         if (digitalClock.start) {
           digitalClock.start();
+          var wrappingList = document.querySelector("wrapping-list");
+          wrappingList.addEventListener('interaction', function(e) {
+            console.log(e.detail.id + ":" + e.detail.interaction);
+          });
           clearInterval(startInterval);
         }
       }, 1000)
 
+
+      function panzoomReset(event) {
+        var panZoomContainer = event.currentTarget;
+        setTimeout(function() {
+          panZoomContainer.style["transform-origin"] = "0px 0px 0px";
+          panZoomContainer.style["transform"] = "matrix(1, 0, 0, 1, 0, 0)";
+        }, 500);
+      }
 
     </script>
 
@@ -86,7 +98,7 @@
     <div class="testBox">
       <digital-time-piece size="40"></digital-time-piece>
     </div>
-    <generic-container best-fit class="absoluteZero">
+    <generic-container best-fit class="absoluteZero" onclick="eat(event)" ondblclick="panzoomReset(event)" >
       <div slot="header" class="relatively noSelect fullWidth centered">
           <br/>
           <div>Workout Pacer</div>
