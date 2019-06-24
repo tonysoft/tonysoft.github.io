@@ -64,7 +64,7 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
       if (wrappingList.setEvents) {
         windowResize();
         clearInterval(startInterval);
-        fetch("../vega/vegaTest/AllMetroMaps.json")
+        fetch("../vegaTest/AllMetroMaps.json")
           .then(res => res.json())
           .then(data => {
             AllMetroMaps = data;
@@ -92,7 +92,7 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
   </script>
 
   <generic-container best-fit class="screen">
-      <wrapping-list slot="content" data-url="../vega/vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name">
+      <wrapping-list slot="content" data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name">
         <div slot="list" class="flex-menu-left">
           <div item="${id}" class="wrappingListItem">${name}</div>
         </div>
