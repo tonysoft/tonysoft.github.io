@@ -34,12 +34,12 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
         justify-content: flex-start;
         align-items: center;
       }
-      .fullScreen {
+      .screen {
         position: absolute;
         top: 1%;
         left: 1%;
-        width: 98%;
-        height: 98%;
+        width: 23%;
+        height: 23%;
       }
   </style>
 </head>
@@ -91,7 +91,7 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
     }
   </script>
 
-  <generic-container best-fit class="fullScreen">
+  <generic-container best-fit class="screen">
       <wrapping-list slot="content" data-url="../vega/vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name">
         <div slot="list" class="flex-menu-left">
           <div item="${id}" class="wrappingListItem">${name}</div>
