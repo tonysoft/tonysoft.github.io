@@ -6,17 +6,17 @@
 
     <title>vega in polymer demo</title>
 
-    <!-- <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script> -->
 
     <script type="module">
       import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
     </script>
 
-    <link rel="stylesheet" href="https://unpkg.com/tonysoft@^1.3.1/workoutTimer.css">
+    <link rel="stylesheet" href="https://unpkg.com/tonysoft@^1.3.7/workoutTimer.css">
 
 
     <script type="module" src="https://unpkg.com/tonysoft@^1.3.1/digital-time-piece.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.2.6/vega-container.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/vega-container.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/wrapping-list.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 
@@ -36,7 +36,7 @@
       var vegaContainers = [];
 
       function load() {
-        var demos = ["./vegaTest/tree-layout.vg.json", "./vegaTest/airports.vg.json", "./vegaTest/bar-chart.vg.json", "./vegaTest/sunburst.vg.json"]
+        var demos = ["../vegaTest/tree-layout.vg.json", "../vegaTest/airports.vg.json", "../vegaTest/bar-chart.vg.json", "../vegaTest/sunburst.vg.json"]
         var views = document.querySelectorAll(".vegaView");
         var viewIndex = 0;
         var rendered = 0;
@@ -78,12 +78,17 @@
             zoomDoubleClickSpeed: 1, 
           });
         }
-        fetch("./vegaTest/bar-chart.data.json")
+        fetch("../vegaTest/bar-chart.data.json")
           .then(res => res.json())
           .then(data => {
             setupBarChartDataUpdate(data, vegaContainer);
           })
-        fetch("./vegaTest/AllMetroMaps.json")
+        fetch("../apiRequests/metroRouting.json")
+          .then(res => res.json())
+          .then(data => {
+            metroRoutingRequestTemplate = data;
+          })
+        fetch("../vegaTest/AllMetroMaps.json")
           .then(res => res.json())
           .then(data => {
             AllMetroMaps = data;
@@ -93,6 +98,35 @@
           container.addEventListener('interaction', function(e) {
             handleVegaInteraction(e)
           });
+        })
+        var wrappingList = document.querySelector(".wrappingMetroList");
+        wrappingList.addEventListener('interaction', function(e) {
+          if (e.detail.interaction === "click") {
+            if (e.detail.id !== selectedMetro) {
+              displayPathToOrigin(e.detail.id, e.detail.container.data);
+              var metroMaps = document.querySelectorAll("vega-container[category='MetroMap']");
+              metroMaps.forEach(function(vegaContainer) {
+                vegaContainer.highlightTreePath(e.detail.id);
+              })
+              selectedMetro = e.detail.id;
+            } else {
+              metroRoutingUpdate(e.detail.id);
+            }
+          } else {
+            if (e.detail.interaction === "mouseover") {
+              displayPathToOrigin(e.detail.id, e.detail.container.data);
+            }
+            if (e.detail.interaction === "mouseout") {
+              setMetroMapHeaders("Metro Map from: " + currentMetro);
+            }
+          }
+        });
+      }
+
+      function setMetroMapHeaders(message) {
+        var metroMapHeader = document.querySelectorAll(".MetroMapHeader");
+        metroMapHeader.forEach(function(header) {
+          header.innerText = message;
         })
       }
 
@@ -119,6 +153,9 @@
         var detail = e.detail;
         var item = detail.item;
         if (!item || !item.datum) {
+          if ((detail.interaction === "click") && (detail.category === "MetroMap")) {
+            detail.container.highlightTreePath();
+          }
           return;
         }
         var interaction = detail.interaction;
@@ -171,15 +208,13 @@
         var category = detail.category;
         switch (category) {
           case "MetroMap":
-            var metroMapHeader = document.querySelectorAll(".MetroMapHeader");
-            metroMapHeader.forEach(function(header) {
-              header.innerText = "Metro Map";
-            })
+            setMetroMapHeaders("Metro Map from: " + currentMetro);
             break;
           default:
             break;
         }
       }
+
 
       var currentMetro = "AT";
       var selectedMetro = "";
@@ -196,6 +231,8 @@
               var metro = item.datum.id;
               if (metro !== selectedMetro) {
                 metroMapHoverNode(e);
+                var vegaContainer = detail.container;
+                vegaContainer.highlightTreePath(metro);
                 selectedMetro = metro;
               } else {
                 metroRoutingUpdate(metro);
@@ -215,15 +252,17 @@
         switch (entity) {
           case "metroRoutingNode":
             var view = detail.view;
+            var items = detail.items;
             var metroMap = view.data("tree");
             var metro = item.datum.id;
-            var pathToOrigin = buildMetroPathToOrigin(metro, metroMap);
-            var metroMapHeader = document.querySelectorAll(".MetroMapHeader");
-            metroMapHeader.forEach(function(header) {
-              header.innerText = pathToOrigin;
-            })
+            displayPathToOrigin(metro, metroMap);
             break;
         }
+      }
+
+      function displayPathToOrigin(metro, metroMap) {
+        var pathToOrigin = buildMetroPathToOrigin(metro, metroMap);
+        setMetroMapHeaders(pathToOrigin);
       }
 
       function buildMetroPathToOrigin(metro, metroMap) {
@@ -269,9 +308,36 @@
           sunburstContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
             // Any postprocessing after an update
           });
+          var wrappingList = document.querySelector(".wrappingMetroList");
+          wrappingList.data = metroRouting;
           currentMetro = metro;
           selectedMetro = "";
         }
+        else {
+          var metroRoutingRequest = JSON.stringify(metroRoutingRequestTemplate);
+          metroRoutingRequest = metroRoutingRequest.replace("${metro}", metro);
+          metroRoutingRequest = JSON.parse(metroRoutingRequest);
+          apiRequest("http://localhost:8090", "executeWorkflow", metroRoutingRequest, function(metroRouting) {
+            var treeContainer = document.querySelector(".treeDemo");
+            var sunburstContainer = document.querySelector(".sunburstDemo");
+            treeContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
+              // Any postprocessing after an update
+            });
+            sunburstContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
+              // Any postprocessing after an update
+            });
+            currentMetro = metro;
+            selectedMetro = "";
+          });
+        }
+      }
+
+      function panzoomReset(event) {
+        var panZoomContainer = event.currentTarget;
+        setTimeout(function() {
+          panZoomContainer.style["transform-origin"] = "0px 0px 0px";
+          panZoomContainer.style["transform"] = "matrix(1, 0, 0, 1, 0, 0)";
+        }, 500);
       }
 
     </script>
@@ -290,6 +356,20 @@
         top: 0px;
         left: 0px;
       }
+      .wrappingListItem {
+        padding: 5px;
+        line-height: 100%; 
+        margin: 0 0 10px 10px;
+        font-size: 40px; 
+        border: 1px solid black; 
+        background-color: #dddddd; 
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;;
+      }
+      .rootWrappingListItem {
+        background-color: #ffdddd; 
+      }
     </style>
 
     <custom-style>
@@ -298,13 +378,18 @@
     </custom-style>
   </head>
   <body>
-    <!-- <div oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="eat(event)" class="fullScreen"></div> -->
-    <div id="panZoomContainer" oncontextmenu="cancelDefault(event)" onclick="eat(event)" onmousedown="eat(event)" onmouseup="eat(event)" class="fullScreen demoWrapper" style="opacity: 0.0;">
+    <div id="panZoomContainer" oncontextmenu="cancelDefault(event)" onclick="eat(event)" ondblclick="panzoomReset(event)" class="fullScreen demoWrapper" style="opacity: 0.0;">
       <div class="topLeft">
         <vega-container id="MetroMap" category="MetroMap" best-fit class="vegaView treeDemo">
           <h1 slot="header" class="MetroMapHeader centered bigText">Metro Map</h1>
           <div slot="content"></div>
-          <h1 slot="footer" class="centered">How a Network Routes to various Worldwide Locations...</h1>
+          <h1 slot="footer" class="centered">
+            <wrapping-list data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name" class="wrappingMetroList">
+              <div slot="list" class="flex-menu-left">
+                <div item="${id}" class="wrappingListItem">${name}</div>
+              </div>
+            </wrapping-list>
+          </h1>
         </vega-container>
       </div>
       <div class="topRight">

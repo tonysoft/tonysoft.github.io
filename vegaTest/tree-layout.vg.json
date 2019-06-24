@@ -40,7 +40,7 @@
   "data": [
     {
       "name": "tree",
-      "url": "./vegaTest/MetrosFromAT.json",
+      "url": "../vegaTest/MetrosFromAT.json",
       "transform": [
         {
           "type": "stratify",

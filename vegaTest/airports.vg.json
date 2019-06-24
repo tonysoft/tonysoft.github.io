@@ -48,7 +48,7 @@
   "data": [
     {
       "name": "states",
-      "url": "./vegaTest/us-10m.json",
+      "url": "../vegaTest/us-10m.json",
       "format": {"type": "topojson", "feature": "states"},
       "transform": [
         {
@@ -59,7 +59,7 @@
     },
     {
       "name": "traffic",
-      "url": "./vegaTest/flights-airport.csv",
+      "url": "../vegaTest/flights-airport.csv",
       "format": {"type": "csv", "parse": "auto"},
       "transform": [
         {
@@ -71,7 +71,7 @@
     },
     {
       "name": "airports",
-      "url": "./vegaTest/airports.csv",
+      "url": "../vegaTest/airports.csv",
       "format": {"type": "csv","parse": "auto"
       },
       "transform": [
@@ -106,7 +106,7 @@
     },
     {
       "name": "routes",
-      "url": "./vegaTest/flights-airport.csv",
+      "url": "../vegaTest/flights-airport.csv",
       "format": {"type": "csv", "parse": "auto"},
       "transform": [
         {
