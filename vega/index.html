@@ -15,7 +15,7 @@
 
 
     <script type="module" src="https://unpkg.com/tonysoft@^1.3.1/digital-time-piece.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/vega-container.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.12/vega-container.js"></script>
     <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/wrapping-list.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -179,7 +179,10 @@
         var item = detail.item;
         if (!item || !item.datum) {
           if ((detail.interaction === "click") && (detail.category === "MetroMap")) {
-            detail.container.highlightTreePath();
+            var metroMaps = document.querySelectorAll("vega-container[category='MetroMap']");
+            metroMaps.forEach(function(vegaContainer) {
+              vegaContainer.highlightTreePath();
+            })
           }
           return;
         }
@@ -256,8 +259,10 @@
               var metro = item.datum.id;
               if (metro !== selectedMetro) {
                 metroMapHoverNode(e);
-                var vegaContainer = detail.container;
-                vegaContainer.highlightTreePath(metro);
+                var metroMaps = document.querySelectorAll("vega-container[category='MetroMap']");
+                metroMaps.forEach(function(vegaContainer) {
+                  vegaContainer.highlightTreePath(metro);
+                })
                 selectedMetro = metro;
               } else {
                 metroRoutingUpdate(metro);
