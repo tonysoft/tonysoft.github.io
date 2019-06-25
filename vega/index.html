@@ -272,12 +272,16 @@
           metroMapMap[metro.id] = metro;
         })
         var targetMetro = metroMapMap[metro];
-        pathToOrigin += targetMetro.name;
-        while (targetMetro.parent) {
-          targetMetro = metroMapMap[targetMetro.parent];
-          if (targetMetro) {
-            pathToOrigin += " >> " + targetMetro.name;
+        if (targetMetro) {
+          pathToOrigin += targetMetro.name;
+          while (targetMetro.parent) {
+            targetMetro = metroMapMap[targetMetro.parent];
+            if (targetMetro) {
+              pathToOrigin += " >> " + targetMetro.name;
+            }
           }
+        } else {
+          pathToOrigin = "Metro Map: " + currentMetro;
         }
         return pathToOrigin;
       }
@@ -320,9 +324,9 @@
           apiRequest("http://localhost:8090", "executeWorkflow", metroRoutingRequest, function(metroRouting) {
             var treeContainer = document.querySelector(".treeDemo");
             var sunburstContainer = document.querySelector(".sunburstDemo");
-            treeContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
-              // Any postprocessing after an update
-            });
+            // treeContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
+            //   // Any postprocessing after an update
+            // });
             sunburstContainer.vegaUpdate("tree", metroRouting, true, function(vegaContainer, view) {
               // Any postprocessing after an update
             });
@@ -365,7 +369,8 @@
         background-color: #dddddd; 
         text-align: center;
         border-radius: 5px;
-        cursor: pointer;;
+        cursor: pointer;
+        min-width: 90px;
       }
       .rootWrappingListItem {
         background-color: #ffdddd; 
