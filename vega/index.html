@@ -15,8 +15,8 @@
 
 
     <script type="module" src="https://unpkg.com/tonysoft@^1.3.1/digital-time-piece.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.4.12/vega-container.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/wrapping-list.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.13/vega-container.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.13/wrapping-list.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 
@@ -417,7 +417,7 @@
   <body>
     <div id="panZoomContainer" oncontextmenu="cancelDefault(event)" onclick="eat(event)" ondblclick="panzoomReset(event)" class="fullScreen demoWrapper" style="opacity: 1.0;">
       <div class="topLeft">
-        <vega-container id="MetroMap" category="MetroMap" best-fit class="vegaView treeDemo">
+        <vega-container id="MetroMap" category="MetroMap" background-opacity=".1" best-fit class="vegaView treeDemo">
           <h1 slot="header" class="MetroMapHeader centered bigText">Metro Map</h1>
           <div slot="content"></div>
           <h1 slot="footer" class="centered">
@@ -442,7 +442,7 @@
         </vega-container>
       </div>
       <div class="bottomLeft">
-        <vega-container id="MetroMapSunburst" category="MetroMap" best-fit class="vegaView sunburstDemo">
+        <vega-container id="MetroMapSunburst" category="MetroMap" background-opacity=".25" best-fit class="vegaView sunburstDemo">
           <h1 slot="header" class="MetroMapHeader centered" style="font-size: 28px;">
             Sunburst Tree Map
           </h1>
