@@ -11,7 +11,7 @@
       import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
     </script>
 
-    <link rel="stylesheet" href="https://unpkg.com/tonysoft@^1.3.7/workoutTimer.css">
+    <link rel="stylesheet" href="https://unpkg.com/tonysoft@^1.4.11/workoutTimer.css">
 
 
     <script type="module" src="https://unpkg.com/tonysoft@^1.3.1/digital-time-piece.js"></script>
@@ -22,10 +22,12 @@
 
     <script src="https://unpkg.com/tonysoft@^1.3.1/panzoom.min.js"></script>
 
-    <script src="https://unpkg.com/tonysoft@^1.3.5/utilities.js"></script>
+    <script src="https://unpkg.com/tonysoft@^1.4.10/utilities.js"></script>
     <script src="https://unpkg.com/tonysoft@^1.3.1/workoutTimerLogic.js"></script>
 
     <script>
+
+      var panel = getParam("panel");
       window.addEventListener("resize", windowResize);
 
       window.onload = function() {
@@ -36,29 +38,50 @@
       var vegaContainers = [];
 
       function load() {
-        var demos = ["../vegaTest/tree-layout.vg.json", "../vegaTest/airports.vg.json", "../vegaTest/bar-chart.vg.json", "../vegaTest/sunburst.vg.json"]
+        var demos = {
+          "MetroMap": "../vegaTest/tree-layout.vg.json", 
+          "AirportRouting": "../vegaTest/airports.vg.json", 
+          "BarChart": "../vegaTest/bar-chart.vg.json", 
+          "MetroMapSunburst": "../vegaTest/sunburst.vg.json"
+        }
         var views = document.querySelectorAll(".vegaView");
-        var viewIndex = 0;
+        var viewsLen = views.length;
+        views.forEach(function(view) {
+          var viewIndex = view.id;
+          if (!panel || (panel && (panel === viewIndex))) {
+            // nothing now;;;
+          } else {
+            viewsLen--;
+            view.parentNode.style.display = "none";
+          }
+        });
         var rendered = 0;
         views.forEach(function(view) {
-          if (view.vegaRenderCallback !== undefined) {
-            view.vegaRenderCallback = vegaRenderCallback;
-            fetch(demos[viewIndex])
-              .then(res => res.json())
-              .then(spec => {
-                view.vegaSpecJSON = spec
-              })
-              .catch(err => console.error(err));
-            // view.vegaSpec = demos[viewIndex];
+          var viewIndex = view.id;
+          if (!panel || (panel && (panel === viewIndex))) {
+            if (panel) {
+              view.parentNode.classList.add("fullScreenMargined")
+            }
+            if (view.vegaRenderCallback !== undefined) {
+              view.vegaRenderCallback = vegaRenderCallback;
+              fetch(demos[viewIndex])
+                .then(res => res.json())
+                .then(spec => {
+                  view.vegaSpecJSON = spec
+                })
+                .catch(err => console.error(err));
+              // view.vegaSpec = demos[viewIndex];
+            } else {
+              rendered++;
+            }
           } else {
-            rendered++;
+            view.parentNode.style.display = "none";
           }
-          viewIndex++;
           function vegaRenderCallback(vegaContainer, view) {
             vegaViews.push(view);
             vegaContainers.push(vegaContainer);
             rendered++;
-            if (rendered === views.length) {
+            if (rendered === viewsLen) {
                 demoSetup();
             }
           }
@@ -83,11 +106,11 @@
           .then(data => {
             setupBarChartDataUpdate(data, vegaContainer);
           })
-        fetch("../apiRequests/metroRouting.json")
-          .then(res => res.json())
-          .then(data => {
-            metroRoutingRequestTemplate = data;
-          })
+        // fetch("../apiRequests/metroRouting.json")
+        //   .then(res => res.json())
+        //   .then(data => {
+        //     metroRoutingRequestTemplate = data;
+        //   })
         fetch("../vegaTest/AllMetroMaps.json")
           .then(res => res.json())
           .then(data => {
@@ -100,27 +123,29 @@
           });
         })
         var wrappingList = document.querySelector(".wrappingMetroList");
-        wrappingList.addEventListener('interaction', function(e) {
-          if (e.detail.interaction === "click") {
-            if (e.detail.id !== selectedMetro) {
-              displayPathToOrigin(e.detail.id, e.detail.container.data);
-              var metroMaps = document.querySelectorAll("vega-container[category='MetroMap']");
-              metroMaps.forEach(function(vegaContainer) {
-                vegaContainer.highlightTreePath(e.detail.id);
-              })
-              selectedMetro = e.detail.id;
+        if (wrappingList) {
+          wrappingList.addEventListener('interaction', function(e) {
+            if (e.detail.interaction === "click") {
+              if (e.detail.id !== selectedMetro) {
+                displayPathToOrigin(e.detail.id, e.detail.container.data);
+                var metroMaps = document.querySelectorAll("vega-container[category='MetroMap']");
+                metroMaps.forEach(function(vegaContainer) {
+                  vegaContainer.highlightTreePath(e.detail.id);
+                })
+                selectedMetro = e.detail.id;
+              } else {
+                metroRoutingUpdate(e.detail.id);
+              }
             } else {
-              metroRoutingUpdate(e.detail.id);
+              if (e.detail.interaction === "mouseover") {
+                displayPathToOrigin(e.detail.id, e.detail.container.data);
+              }
+              if (e.detail.interaction === "mouseout") {
+                setMetroMapHeaders("Metro Map from: " + currentMetro);
+              }
             }
-          } else {
-            if (e.detail.interaction === "mouseover") {
-              displayPathToOrigin(e.detail.id, e.detail.container.data);
-            }
-            if (e.detail.interaction === "mouseout") {
-              setMetroMapHeaders("Metro Map from: " + currentMetro);
-            }
-          }
-        });
+          });
+        }
       }
 
       function setMetroMapHeaders(message) {
@@ -385,7 +410,7 @@
     </custom-style>
   </head>
   <body>
-    <div id="panZoomContainer" oncontextmenu="cancelDefault(event)" onclick="eat(event)" ondblclick="panzoomReset(event)" class="fullScreen demoWrapper" style="opacity: 0.0;">
+    <div id="panZoomContainer" oncontextmenu="cancelDefault(event)" onclick="eat(event)" ondblclick="panzoomReset(event)" class="fullScreen demoWrapper" style="opacity: 1.0;">
       <div class="topLeft">
         <vega-container id="MetroMap" category="MetroMap" best-fit class="vegaView treeDemo">
           <h1 slot="header" class="MetroMapHeader centered bigText">Metro Map</h1>
@@ -416,7 +441,7 @@
           <h1 slot="header" class="MetroMapHeader centered" style="font-size: 28px;">
             Sunburst Tree Map
           </h1>
-          <div slot="content"></div>
+          <div slot="content" class="centered"></div>
           <h2 slot="footer" class="centered">
             <wrapping-list data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name" class="wrappingMetroList">
               <div slot="list" class="flex-menu-left">
