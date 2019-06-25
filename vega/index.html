@@ -362,19 +362,20 @@
         left: 0px;
       }
       .wrappingListItem {
-        padding: 18px;
+        padding: 4px;
         line-height: 100%; 
         margin: 0 0 20px 20px;
-        font-size: 55px; 
+        font-size: 15px; 
         border: 1px solid black; 
         background-color: #dddddd; 
         text-align: center;
         border-radius: 5px;
         cursor: pointer;
-        min-width: 90px;
+        min-width: 30px;
       }
       .rootWrappingListItem {
-        background-color: #ffdddd; 
+        background-color: rgb(57, 59, 121); 
+        color: #EEEEEE;
       }
     </style>
 
@@ -390,11 +391,7 @@
           <h1 slot="header" class="MetroMapHeader centered bigText">Metro Map</h1>
           <div slot="content"></div>
           <h1 slot="footer" class="centered">
-            <wrapping-list data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name" class="wrappingMetroList">
-              <div slot="list" class="flex-menu-left">
-                <div item="${id}" class="wrappingListItem">${name}</div>
-              </div>
-            </wrapping-list>
+            A Tree Map from one Node to all other Nodes...
           </h1>
         </vega-container>
       </div>
@@ -416,9 +413,17 @@
       </div>
       <div class="bottomLeft">
         <vega-container id="MetroMapSunburst" category="MetroMap" best-fit class="vegaView sunburstDemo">
-          <h1 slot="header" class="MetroMapHeader centered" style="font-size: 28px;">Sunburst Chart</h1>
+          <h1 slot="header" class="MetroMapHeader centered" style="font-size: 28px;">
+            Sunburst Tree Map
+          </h1>
           <div slot="content"></div>
-          <h2 slot="footer" class="centered">Another way of representing Tree Data...</h2>
+          <h2 slot="footer" class="centered">
+            <wrapping-list data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name" class="wrappingMetroList">
+              <div slot="list" class="flex-menu-left">
+                <div item="${id}" class="wrappingListItem">${name}</div>
+              </div>
+            </wrapping-list>
+          </h2>
         </vega-container>
       </div>
     </div>
