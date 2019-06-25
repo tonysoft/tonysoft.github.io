@@ -316,6 +316,7 @@
           wrappingList.data = metroRouting;
           currentMetro = metro;
           selectedMetro = "";
+          setMetroMapHeaders("Metro Map from: " + currentMetro);
         }
         else {
           var metroRoutingRequest = JSON.stringify(metroRoutingRequestTemplate);
@@ -415,7 +416,7 @@
       </div>
       <div class="bottomLeft">
         <vega-container id="MetroMapSunburst" category="MetroMap" best-fit class="vegaView sunburstDemo">
-          <h1 slot="header" class="MetroMapHeader centered">Sunburst Chart</h1>
+          <h1 slot="header" class="MetroMapHeader centered" style="font-size: 28px;">Sunburst Chart</h1>
           <div slot="content"></div>
           <h2 slot="footer" class="centered">Another way of representing Tree Data...</h2>
         </vega-container>
