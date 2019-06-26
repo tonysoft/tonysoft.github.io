@@ -8,8 +8,8 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
   <title>digit-cell demo</title>
   <script type="module">
     import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
-    import 'https://unpkg.com/tonysoft@^1.3.4/generic-container.js'
-    import 'https://unpkg.com/tonysoft@^1.3.4/digit-cell.js'
+    import 'https://unpkg.com/tonysoft@^1.4.11/generic-container.js'
+    import 'https://unpkg.com/tonysoft@^1.4.11/digit-cell.js'
   </script>
   <style>
   </style>
@@ -31,18 +31,24 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
 
     var value = 0;
     var initial = true;
+    var timeToInit = 0;
+    var interval = 1000;
     setInterval(function() {
-      if (initial) {
-        windowResize();
-        initial = false;
-      }
-      if (value === 9) {
-        value = -1;
-      }
-      value++;
+      timeToInit += interval;
       var digitCell = document.querySelector("digit-cell");
-      digitCell.value = value;
-    }, 1000)
+      if (digitCell.upperright) {
+        if (initial) {
+          windowResize();
+          initial = false;
+          console.log(timeToInit);
+        }
+        if (value === 9) {
+          value = -1;
+        }
+        value++;
+        digitCell.value = value;
+      }
+    }, interval)
   </script>
 
   <generic-container best-fit>
