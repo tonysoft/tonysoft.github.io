@@ -8,22 +8,21 @@
 
     <script type="module">
       import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js';
-      import 'https://unpkg.com/tonysoft@^1.2.6/@polymer/iron-icon/iron-icon.js';
-      import 'https://unpkg.com/tonysoft@^1.3.7/@polymer/iron-icons/iron-icons.js'
-      import "https://unpkg.com/tonysoft@^1.3.7/my-icons.js"
+      import 'https://unpkg.com/@polymer/iron-icon/iron-icon.js?module';
+      import 'https://unpkg.com/tonysoft@^1.4.23/iron-icons.js?module'
+      import "https://unpkg.com/tonysoft@^1.4.22/my-icons.js?module"
     </script>
 
     <link rel="stylesheet" href="https://unpkg.com/tonysoft@^1.3.7/workoutTimer.css">
 
 
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/workout-reps.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/digital-time-piece.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/time-piece.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/generic-container.js"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/workout-reps.js?module"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/digital-time-piece.js?module"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/time-piece.js?module"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/generic-container.js?module"></script>
     <script src="https://unpkg.com/tonysoft@^1.3.7/panzoom.min.js"></script>
     <script src="https://unpkg.com/tonysoft@^1.3.5/utilities.js"></script>
     <script src="https://unpkg.com/tonysoft@^1.3.8/workoutTimerLogic.js"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.3.7/wrapping-list.js"></script>
     <script>
       var repetitionCount = 0;
 
@@ -39,10 +38,6 @@
         var digitalClock = document.querySelector("digital-time-piece");
         if (digitalClock.start) {
           digitalClock.start();
-          var wrappingList = document.querySelector("wrapping-list");
-          wrappingList.addEventListener('interaction', function(e) {
-            console.log(e.detail.id + ":" + e.detail.interaction);
-          });
           clearInterval(startInterval);
         }
       }, 1000)
