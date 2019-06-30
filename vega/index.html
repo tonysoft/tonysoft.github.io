@@ -16,7 +16,7 @@
 
     <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/digital-time-piece.js?module"></script>
     <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/vega-container.js?module"></script>
-    <script type="module" src="https://unpkg.com/tonysoft@^1.4.21/wrapping-list.js?module"></script>
+    <script type="module" src="https://unpkg.com/tonysoft@^1.4.29/flex-item-list.js?module"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 
@@ -448,15 +448,14 @@
           </h1>
           <div slot="content" class="centered"></div>
           <h2 slot="footer" class="centered">
-            <wrapping-list data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name" class="wrappingMetroList">
+            <flex-item-list data-url="../vegaTest/MetrosFromAT.json" item-id="id" display="name" sort="name" class="wrappingMetroList">
               <div slot="list" class="flex-menu-left">
                 <div item="${id}" class="wrappingListItem">${name}</div>
               </div>
-            </wrapping-list>
+            </flex-item-list>
           </h2>
         </vega-container>
       </div>
     </div>
   </body>
 </html>
- 
