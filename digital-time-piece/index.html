@@ -8,8 +8,8 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
   <title>digital-time-piece demo</title>
   <script type="module">
     import 'https://unpkg.com/@webcomponents/shadycss/entrypoints/apply-shim.js?module';
-    import 'https://unpkg.com/tonysoft@^1.4.21/digital-time-piece.js?module'
-    import 'https://unpkg.com/tonysoft@^1.4.21/generic-container.js?module'
+    import 'https://unpkg.com/tonysoft@^1.4.35/digital-time-piece.js?module'
+    import 'https://unpkg.com/tonysoft@^1.4.35/generic-container.js?module'
   </script>
   <style>
   </style>
@@ -32,7 +32,7 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
     var startupInterval = setInterval(function() {
       var digitalClock = document.querySelector("digital-time-piece");
       if (digitalClock.start) {
-        digitalClock.start();
+        // digitalClock.start();
         windowResize();
         clearInterval(startupInterval);
       }
@@ -40,7 +40,7 @@ Copyright (c) 2019 Tony Sukiennik. All rights reserved.
   </script>
 
   <generic-container best-fit>
-    <digital-time-piece slot="content" size="75"></digital-time-piece>
+    <digital-time-piece slot="content" size="75" auto-start></digital-time-piece>
   </generic-container>
 
 </body>
