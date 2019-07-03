@@ -215,7 +215,7 @@
           "y": {"value": 0},
           "fill": {"value": "black"},
           "fontSize": {"value": 20},
-          "align": {"value": "right"}
+          "align": {"value": "left"}
         },
         "update": {
           "text": {"signal": "title"}
