@@ -5,6 +5,10 @@
     "padding": 25,
   
     "signals": [
+        {
+            "name": "scale", "value": 500,
+            "bind": {"input": "range", "min": 500, "max": 3000}
+    },
       {
         "name": "labels", "value": true,
         "bind": {"input": "checkbox"}
