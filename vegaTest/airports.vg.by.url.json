@@ -211,11 +211,11 @@
       "interactive": false,
       "encode": {
         "enter": {
-          "x": {"value": 895},
+          "x": {"value": 0},
           "y": {"value": 0},
           "fill": {"value": "black"},
           "fontSize": {"value": 20},
-          "align": {"value": "left"}
+          "align": {"value": "right"}
         },
         "update": {
           "text": {"signal": "title"}
