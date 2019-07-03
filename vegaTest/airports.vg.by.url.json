@@ -7,11 +7,11 @@
 
   "signals": [
     {
-      "name": "scale", "value": 1200,
+      "name": "scale", "value": 500,
       "bind": {"input": "range", "min": 500, "max": 3000}
     },
     {
-      "name": "translateX", "value": 450,
+      "name": "translateX", "value": 190,
       "bind": {"input": "range", "min": -500, "max": 1200}
     },
     {
