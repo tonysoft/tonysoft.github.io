@@ -3,7 +3,10 @@
     "width": 1100,
     "height": 800,
     "padding": 25,
-  
+    "internalInteractionMap": {
+        "click": "highlightTreePath",
+        "secondClick": "dataUpdate"
+    },
     "signals": [
         {
             "name": "scale", "value": 500,

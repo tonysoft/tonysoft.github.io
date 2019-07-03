@@ -4,7 +4,10 @@
   "height": 600,
   "padding": 5,
   "autosize": "none",
-
+  "internalInteractionMap": {
+    "click": "highlightTreePath",
+    "secondClick": "dataUpdate"
+  },
   "data": [
     {
       "name": "tree",
