@@ -123,7 +123,7 @@
             "x": {"field": "x"},
             "y": {"field": "y"},
             "fill": {"value": "white"},
-            "dx": {"signal": "datum.children ? 8 : -8"},
+            "dx": {"signal": "datum.children ? 6 : -6"},
             "align": {"signal": "datum.children ? 'right' : 'left'"},
             "opacity": {"signal": "labels ? 1 : 0"}
           }
