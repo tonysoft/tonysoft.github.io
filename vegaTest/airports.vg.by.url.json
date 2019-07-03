@@ -212,7 +212,7 @@
       "encode": {
         "enter": {
           "x": {"value": 10},
-          "y": {"value": 150},
+          "y": {"value": 130},
           "fill": {"value": "black"},
           "fontSize": {"value": 20},
           "align": {"value": "left"}
