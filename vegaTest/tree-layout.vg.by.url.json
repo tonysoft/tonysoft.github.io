@@ -97,7 +97,7 @@
       "encode": {
         "enter": {
           "shape":  {"value": "square"},
-          "size": {"value": 900},
+          "size": {"value": 450},
           "id": {"field": "name"},
           "stroke": {"value": "#000"},
           "strokeWidth": {"value": 2}
@@ -116,7 +116,7 @@
       "encode": {
         "enter": {
           "text": {"field": "name"},
-          "fontSize": {"value": 12},
+          "fontSize": {"value": 8},
           "baseline": {"value": "middle"}
         },
         "update": {
@@ -137,7 +137,7 @@
           "x": {"value": 0},
           "y": {"value": 0},
           "fill": {"value": "black"},
-          "fontSize": {"value": 40},
+          "fontSize": {"value": 20},
           "align": {"value": "left"}
         },
         "update": {
