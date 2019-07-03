@@ -97,7 +97,7 @@
       "encode": {
         "enter": {
           "shape":  {"value": "square"},
-          "size": {"value": 450},
+          "size": {"value": 300},
           "id": {"field": "name"},
           "stroke": {"value": "#000"},
           "strokeWidth": {"value": 2}
