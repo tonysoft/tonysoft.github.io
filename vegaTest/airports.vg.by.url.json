@@ -11,7 +11,7 @@
       "bind": {"input": "range", "min": 500, "max": 3000}
     },
     {
-      "name": "translateX", "value": 350,
+      "name": "translateX", "value": 460,
       "bind": {"input": "range", "min": -500, "max": 1200}
     },
     {
@@ -212,7 +212,7 @@
       "encode": {
         "enter": {
           "x": {"value": 10},
-          "y": {"value": 0},
+          "y": {"value": -40},
           "fill": {"value": "black"},
           "fontSize": {"value": 15},
           "align": {"value": "left"}
