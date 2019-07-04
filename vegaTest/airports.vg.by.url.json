@@ -212,10 +212,10 @@
       "encode": {
         "enter": {
           "x": {"value": 10},
-          "y": {"value": -40},
+          "y": {"value": 0},
           "fill": {"value": "black"},
           "fontSize": {"value": 15},
-          "align": {"value": "left"}
+          "align": {"value": "center"}
         },
         "update": {
           "text": {"signal": "title"}
