@@ -15,7 +15,7 @@
       "bind": {"input": "range", "min": -500, "max": 1200}
     },
     {
-      "name": "translateY", "value": 200,
+      "name": "translateY", "value": 230,
       "bind": {"input": "range", "min": -300, "max": 700}
     },
     {
