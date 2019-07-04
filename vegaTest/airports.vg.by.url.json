@@ -211,7 +211,7 @@
       "interactive": false,
       "encode": {
         "enter": {
-          "x": {"value": 550},
+          "x": {"value": 575},
           "y": {"value": 0},
           "fill": {"value": "black"},
           "fontSize": {"value": 15},
