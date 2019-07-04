@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 600,
-  "height": 370,
+  "width": 900,
+  "height": 560,
   "padding": {"top": 25, "left": 0, "right": 0, "bottom": 0},
   "autosize": "none",
 
   "signals": [
     {
-      "name": "scale", "value": 500,
+      "name": "scale", "value": 1200,
       "bind": {"input": "range", "min": 500, "max": 3000}
     },
     {
