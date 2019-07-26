@@ -1,10 +1,10 @@
 [
-    {"category": "A", "amount": 28},
-    {"category": "B", "amount": 55},
-    {"category": "C", "amount": 43},
-    {"category": "D", "amount": 91},
-    {"category": "E", "amount": 81},
-    {"category": "F", "amount": 53},
-    {"category": "G", "amount": 19},
-    {"category": "H", "amount": 87}
+    {"id": "A", "amount": 28},
+    {"id": "B", "amount": 55},
+    {"id": "C", "amount": 43},
+    {"id": "D", "amount": 91},
+    {"id": "E", "amount": 81},
+    {"id": "F", "amount": 53},
+    {"id": "G", "amount": 19},
+    {"id": "H", "amount": 87}
 ]
