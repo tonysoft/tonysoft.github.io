@@ -1,0 +1,383 @@
+[{
+	"metric": {
+		"labels": {
+			"log": "amp-june272019"
+		},
+		"type": "logging.googleapis.com/user/track_errors"
+	},
+	"metricKind": "DELTA",
+	"points": [{
+		"interval": {
+			"endTime": "2019-07-08T19:13:00Z",
+			"startTime": "2019-07-08T19:12:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:12:00Z",
+			"startTime": "2019-07-08T19:11:00Z"
+		},
+		"value": {
+			"int64Value": "1"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:11:00Z",
+			"startTime": "2019-07-08T19:10:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}],
+	"resource": {
+		"labels": {
+			"cluster_name": "staging",
+			"container_name": "amp-june272019",
+			"instance_id": "1178191500953135662",
+			"namespace_id": "default",
+			"pod_id": "amp-june272019-deployment-855d7d6fc5-m7b94",
+			"project_id": "rmx-staging",
+			"zone": "us-west1-a"
+		},
+		"type": "gke_container"
+	},
+	"valueType": "INT64"
+}, {
+	"metric": {
+		"labels": {
+			"log": "nginx"
+		},
+		"type": "logging.googleapis.com/user/track_errors"
+	},
+	"metricKind": "DELTA",
+	"points": [{
+		"interval": {
+			"endTime": "2019-07-08T19:16:00Z",
+			"startTime": "2019-07-08T19:15:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:15:00Z",
+			"startTime": "2019-07-08T19:14:00Z"
+		},
+		"value": {
+			"int64Value": "63"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:14:00Z",
+			"startTime": "2019-07-08T19:13:00Z"
+		},
+		"value": {
+			"int64Value": "85"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:13:00Z",
+			"startTime": "2019-07-08T19:12:00Z"
+		},
+		"value": {
+			"int64Value": "85"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:12:00Z",
+			"startTime": "2019-07-08T19:11:00Z"
+		},
+		"value": {
+			"int64Value": "91"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:11:00Z",
+			"startTime": "2019-07-08T19:10:00Z"
+		},
+		"value": {
+			"int64Value": "83"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:10:00Z",
+			"startTime": "2019-07-08T19:09:00Z"
+		},
+		"value": {
+			"int64Value": "70"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:09:00Z",
+			"startTime": "2019-07-08T19:08:00Z"
+		},
+		"value": {
+			"int64Value": "75"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:08:00Z",
+			"startTime": "2019-07-08T19:07:00Z"
+		},
+		"value": {
+			"int64Value": "8"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:07:00Z",
+			"startTime": "2019-07-08T19:06:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}],
+	"resource": {
+		"labels": {
+			"cluster_name": "staging",
+			"container_name": "nginx",
+			"instance_id": "1178191500953135662",
+			"namespace_id": "default",
+			"pod_id": "nginx-7c4cd66dd-x6wbx",
+			"project_id": "rmx-staging",
+			"zone": "us-west1-a"
+		},
+		"type": "gke_container"
+	},
+	"valueType": "INT64"
+}, {
+	"metric": {
+		"labels": {
+			"log": "amp-staging"
+		},
+		"type": "logging.googleapis.com/user/track_errors"
+	},
+	"metricKind": "DELTA",
+	"points": [{
+		"interval": {
+			"endTime": "2019-07-08T19:22:00Z",
+			"startTime": "2019-07-08T19:21:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:21:00Z",
+			"startTime": "2019-07-08T19:20:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:20:00Z",
+			"startTime": "2019-07-08T19:19:00Z"
+		},
+		"value": {
+			"int64Value": "2"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:19:00Z",
+			"startTime": "2019-07-08T19:18:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:17:00Z",
+			"startTime": "2019-07-08T19:16:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:16:00Z",
+			"startTime": "2019-07-08T19:15:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:15:00Z",
+			"startTime": "2019-07-08T19:14:00Z"
+		},
+		"value": {
+			"int64Value": "72"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:14:00Z",
+			"startTime": "2019-07-08T19:13:00Z"
+		},
+		"value": {
+			"int64Value": "90"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:13:00Z",
+			"startTime": "2019-07-08T19:12:00Z"
+		},
+		"value": {
+			"int64Value": "88"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:12:00Z",
+			"startTime": "2019-07-08T19:11:00Z"
+		},
+		"value": {
+			"int64Value": "130"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:11:00Z",
+			"startTime": "2019-07-08T19:10:00Z"
+		},
+		"value": {
+			"int64Value": "87"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:10:00Z",
+			"startTime": "2019-07-08T19:09:00Z"
+		},
+		"value": {
+			"int64Value": "88"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:09:00Z",
+			"startTime": "2019-07-08T19:08:00Z"
+		},
+		"value": {
+			"int64Value": "88"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:08:00Z",
+			"startTime": "2019-07-08T19:07:00Z"
+		},
+		"value": {
+			"int64Value": "16"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:07:00Z",
+			"startTime": "2019-07-08T19:06:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}],
+	"resource": {
+		"labels": {
+			"cluster_name": "staging",
+			"container_name": "amp-staging",
+			"instance_id": "2734690999098026876",
+			"namespace_id": "default",
+			"pod_id": "amp-staging-deployment-76666fd6f-s6ww9",
+			"project_id": "rmx-staging",
+			"zone": "us-west1-a"
+		},
+		"type": "gke_container"
+	},
+	"valueType": "INT64"
+}, {
+	"metric": {
+		"labels": {
+			"log": "amp-meepmeep"
+		},
+		"type": "logging.googleapis.com/user/track_errors"
+	},
+	"metricKind": "DELTA",
+	"points": [{
+		"interval": {
+			"endTime": "2019-07-08T19:10:00Z",
+			"startTime": "2019-07-08T19:09:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:09:00Z",
+			"startTime": "2019-07-08T19:08:00Z"
+		},
+		"value": {
+			"int64Value": "1"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:08:00Z",
+			"startTime": "2019-07-08T19:07:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}],
+	"resource": {
+		"labels": {
+			"cluster_name": "staging",
+			"container_name": "amp-meepmeep",
+			"instance_id": "7376911275767507099",
+			"namespace_id": "default",
+			"pod_id": "amp-meepmeep-deployment-f8b69db68-clsv6",
+			"project_id": "rmx-staging",
+			"zone": "us-west1-a"
+		},
+		"type": "gke_container"
+	},
+	"valueType": "INT64"
+}, {
+	"metric": {
+		"labels": {
+			"log": "amp-demo"
+		},
+		"type": "logging.googleapis.com/user/track_errors"
+	},
+	"metricKind": "DELTA",
+	"points": [{
+		"interval": {
+			"endTime": "2019-07-08T19:14:00Z",
+			"startTime": "2019-07-08T19:13:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:13:00Z",
+			"startTime": "2019-07-08T19:12:00Z"
+		},
+		"value": {
+			"int64Value": "1"
+		}
+	}, {
+		"interval": {
+			"endTime": "2019-07-08T19:12:00Z",
+			"startTime": "2019-07-08T19:11:00Z"
+		},
+		"value": {
+			"int64Value": "0"
+		}
+	}],
+	"resource": {
+		"labels": {
+			"cluster_name": "staging",
+			"container_name": "amp-demo",
+			"instance_id": "7895131674536717250",
+			"namespace_id": "default",
+			"pod_id": "amp-demo-deployment-5db875587d-r42sb",
+			"project_id": "rmx-staging",
+			"zone": "us-west1-a"
+		},
+		"type": "gke_container"
+	},
+	"valueType": "INT64"
+}]

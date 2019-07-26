@@ -1,0 +1,296 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "description": "Errors for Remix from StackDriver.",
+    "autosize": "pad",
+    "padding": 5,
+    "width": 900,
+    "height": 600,
+    "style": "cell",
+    "data": [
+      {
+        "name": "errors",
+        "values": [
+          {
+            "metric": "amp-june272019",
+            "time": "2019-07-08T19:13:00Z",
+            "value": "0"
+          },
+          {
+            "metric": "amp-june272019",
+            "time": "2019-07-08T19:12:00Z",
+            "value": "1"
+          },
+          {
+            "metric": "amp-june272019",
+            "time": "2019-07-08T19:11:00Z",
+            "value": "0"
+          },
+          {"metric": "nginx", "time": "2019-07-08T19:16:00Z", "value": "0"},
+          {"metric": "nginx", "time": "2019-07-08T19:15:00Z", "value": "63"},
+          {"metric": "nginx", "time": "2019-07-08T19:14:00Z", "value": "85"},
+          {"metric": "nginx", "time": "2019-07-08T19:13:00Z", "value": "85"},
+          {"metric": "nginx", "time": "2019-07-08T19:12:00Z", "value": "91"},
+          {"metric": "nginx", "time": "2019-07-08T19:11:00Z", "value": "83"},
+          {"metric": "nginx", "time": "2019-07-08T19:10:00Z", "value": "70"},
+          {"metric": "nginx", "time": "2019-07-08T19:09:00Z", "value": "75"},
+          {"metric": "nginx", "time": "2019-07-08T19:08:00Z", "value": "8"},
+          {"metric": "nginx", "time": "2019-07-08T19:07:00Z", "value": "0"},
+          {"metric": "amp-staging", "time": "2019-07-08T19:22:00Z", "value": "0"},
+          {"metric": "amp-staging", "time": "2019-07-08T19:21:00Z", "value": "0"},
+          {"metric": "amp-staging", "time": "2019-07-08T19:20:00Z", "value": "2"},
+          {"metric": "amp-staging", "time": "2019-07-08T19:19:00Z", "value": "0"},
+          {"metric": "amp-staging", "time": "2019-07-08T19:17:00Z", "value": "0"},
+          {"metric": "amp-staging", "time": "2019-07-08T19:16:00Z", "value": "0"},
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:15:00Z",
+            "value": "72"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:14:00Z",
+            "value": "90"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:13:00Z",
+            "value": "88"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:12:00Z",
+            "value": "130"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:11:00Z",
+            "value": "87"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:10:00Z",
+            "value": "88"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:09:00Z",
+            "value": "88"
+          },
+          {
+            "metric": "amp-staging",
+            "time": "2019-07-08T19:08:00Z",
+            "value": "16"
+          },
+          {"metric": "amp-staging", "time": "2019-07-08T19:07:00Z", "value": "0"},
+          {
+            "metric": "amp-meepmeep",
+            "time": "2019-07-08T19:10:00Z",
+            "value": "0"
+          },
+          {
+            "metric": "amp-meepmeep",
+            "time": "2019-07-08T19:09:00Z",
+            "value": "1"
+          },
+          {
+            "metric": "amp-meepmeep",
+            "time": "2019-07-08T19:08:00Z",
+            "value": "0"
+          },
+          {"metric": "amp-demo", "time": "2019-07-08T19:14:00Z", "value": "0"},
+          {"metric": "amp-demo", "time": "2019-07-08T19:13:00Z", "value": "1"},
+          {"metric": "amp-demo", "time": "2019-07-08T19:12:00Z", "value": "0"}
+        ]
+      },
+      {
+        "name": "data_0",
+        "source": "errors",
+        "transform": [
+          {"type": "formula", "expr": "toDate(datum[\"time\"])", "as": "time"},
+          {
+            "type": "formula",
+            "as": "hours/minutes_time",
+            "expr": "datetime(0, 0, 1, hours(datum[\"time\"]), minutes(datum[\"time\"]), 0, 0)"
+          },
+          {
+            "type": "aggregate",
+            "groupby": ["hours/minutes_time", "metric"],
+            "ops": ["mean"],
+            "fields": ["value"],
+            "as": ["mean_value"]
+          }
+        ]
+      },
+      {
+        "name": "data_1",
+        "source": "data_0",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum[\"hours/minutes_time\"] !== null && !isNaN(datum[\"hours/minutes_time\"])"
+          }
+        ]
+      }
+    ],
+    "marks": [
+      {
+        "name": "layer_0_pathgroup",
+        "type": "group",
+        "from": {
+          "facet": {
+            "name": "faceted_path_layer_0_main",
+            "data": "data_0",
+            "groupby": ["metric"]
+          }
+        },
+        "encode": {
+          "update": {
+            "width": {"field": {"group": "width"}},
+            "height": {"field": {"group": "height"}}
+          }
+        },
+        "marks": [
+          {
+            "name": "layer_0_marks",
+            "type": "line",
+            "style": ["line"],
+            "sort": {
+              "field": "datum[\"hours/minutes_time\"]",
+              "order": "descending"
+            },
+            "from": {"data": "faceted_path_layer_0_main"},
+            "encode": {
+              "update": {
+                "stroke": {"scale": "color", "field": "metric"},
+                "tooltip": {
+                  "signal": "{\"time (hours-minutes)\": timeFormat(datum[\"hours/minutes_time\"], '%H:%M'), \"Mean of value\": format(datum[\"mean_value\"], \"\"), \"metric\": ''+datum[\"metric\"]}"
+                },
+                "x": {"scale": "x", "field": "hours/minutes_time"},
+                "y": {"scale": "y", "field": "mean_value"},
+                "defined": {
+                  "signal": "datum[\"hours/minutes_time\"] !== null && !isNaN(datum[\"hours/minutes_time\"]) && datum[\"mean_value\"] !== null && !isNaN(datum[\"mean_value\"])"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "layer_1_marks",
+        "type": "symbol",
+        "style": ["point"],
+        "from": {"data": "data_1"},
+        "encode": {
+          "update": {
+            "opacity": {"value": 1},
+            "fill": {"scale": "color", "field": "metric"},
+            "tooltip": {
+              "signal": "{\"time (hours-minutes)\": timeFormat(datum[\"hours/minutes_time\"], '%H:%M'), \"Mean of value\": format(datum[\"mean_value\"], \"\"), \"metric\": ''+datum[\"metric\"]}"
+            },
+            "x": {"scale": "x", "field": "hours/minutes_time"},
+            "y": {"scale": "y", "field": "mean_value"}
+          }
+        }
+      }
+    ],
+    "scales": [
+      {
+        "name": "x",
+        "type": "time",
+        "domain": {
+          "fields": [
+            {"data": "data_0", "field": "hours/minutes_time"},
+            {"data": "data_1", "field": "hours/minutes_time"}
+          ]
+        },
+        "range": [0, {"signal": "width"}]
+      },
+      {
+        "name": "y",
+        "type": "linear",
+        "domain": {
+          "fields": [
+            {"data": "data_0", "field": "mean_value"},
+            {"data": "data_1", "field": "mean_value"}
+          ]
+        },
+        "range": [{"signal": "height"}, 0],
+        "nice": true,
+        "zero": true
+      },
+      {
+        "name": "color",
+        "type": "ordinal",
+        "domain": {
+          "fields": [
+            {"data": "data_0", "field": "metric"},
+            {"data": "data_1", "field": "metric"}
+          ],
+          "sort": true
+        },
+        "range": "category"
+      }
+    ],
+    "axes": [
+      {
+        "scale": "x",
+        "orient": "bottom",
+        "grid": false,
+        "title": "time (hours-minutes)",
+        "labelFlush": true,
+        "labelOverlap": true,
+        "tickCount": {"signal": "ceil(width/40)"},
+        "encode": {
+          "labels": {
+            "update": {"text": {"signal": "timeFormat(datum.value, '%H:%M')"}}
+          }
+        },
+        "zindex": 1
+      },
+      {
+        "scale": "x",
+        "orient": "bottom",
+        "gridScale": "y",
+        "grid": true,
+        "tickCount": {"signal": "ceil(width/40)"},
+        "domain": false,
+        "labels": false,
+        "maxExtent": 0,
+        "minExtent": 0,
+        "ticks": false,
+        "zindex": 0
+      },
+      {
+        "scale": "y",
+        "orient": "left",
+        "grid": false,
+        "title": "Mean of value",
+        "labelOverlap": true,
+        "tickCount": {"signal": "ceil(height/40)"},
+        "zindex": 1
+      },
+      {
+        "scale": "y",
+        "orient": "left",
+        "gridScale": "x",
+        "grid": true,
+        "tickCount": {"signal": "ceil(height/40)"},
+        "domain": false,
+        "labels": false,
+        "maxExtent": 0,
+        "minExtent": 0,
+        "ticks": false,
+        "zindex": 0
+      }
+    ],
+    "legends": [
+      {
+        "stroke": "color",
+        "gradientLength": {"signal": "clamp(height, 64, 200)"},
+        "symbolType": "circle",
+        "title": "metric",
+        "fill": "color",
+        "encode": {"symbols": {"update": {"opacity": {"value": 1}}}}
+      }
+    ]
+  }
