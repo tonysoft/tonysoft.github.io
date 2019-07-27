@@ -7,7 +7,6 @@
   "data": [
     {
       "name": "table",
-      "idField": "symbol",
       "urlx": "https://tonysoft.github.io/vegaTest/bar-chart.data.json"
     }
   ],
@@ -27,7 +26,7 @@
     {
       "name": "xscale",
       "type": "band",
-      "domain": {"data": "table", "field": "symbol"},
+      "domain": {"data": "table", "field": "date"},
       "range": "width",
       "padding": 0.25,
       "round": true
@@ -51,7 +50,7 @@
       "from": {"data":"table"},
       "encode": {
         "enter": {
-          "x": {"scale": "xscale", "field": "symbol"},
+          "x": {"scale": "xscale", "field": "date"},
           "width": {"scale": "xscale", "band": 1},
           "y": {"scale": "yscale", "field": "price"},
           "y2": {"scale": "yscale", "value": 0}
@@ -73,7 +72,7 @@
           "fill": {"value": "#333"}
         },
         "update": {
-          "x": {"scale": "xscale", "signal": "tooltip.symbol", "band": 0.5},
+          "x": {"scale": "xscale", "signal": "tooltip.date", "band": 0.5},
           "y": {"scale": "yscale", "signal": "tooltip.price", "offset": -2},
           "text": {"signal": "tooltip.price"},
           "fillOpacity": [
