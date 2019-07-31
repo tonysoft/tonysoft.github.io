@@ -41,7 +41,7 @@
   ],
 
   "axes": [
-    { "orient": "bottom", "scale": "xscale", "labelAngle": 270, "labelBaseline": "middle" },
+    { "orient": "bottom", "scale": "xscale", "labelAngle": 270, "labelBaseline": "top" },
     { "orient": "left", "scale": "yscale" }
   ],
 
